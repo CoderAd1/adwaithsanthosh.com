@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RudderStack Test</title>
+    <script>
+    !function(){var e,n,s,o,i,a,r,c,l,d,t="rudderanalytics";if(window[t]||(window[t]=[]),e=window[t],Array.isArray(e))if(e.snippetExecuted===!0&&window.console&&console.error)console.error("RudderStack JavaScript SDK snippet included more than once.");else{e.snippetExecuted=!0,window.rudderAnalyticsBuildType="legacy",c="https://cdn.rudderlabs.com/v3",l="rsa.min.js",o="async",i=["setDefaultInstanceKey","load","ready","page","track","identify","alias","group","reset","setAnonymousId","startSession","endSession","consent"];for(n=0;n<i.length;n++)a=i[n],e[a]=function(n){return function(){if(Array.isArray(window[t]))e.push([n].concat(Array.prototype.slice.call(arguments)));else{var s;(s=window[t][n])===null||s===void 0||s.apply(window[t],arguments)}}}(a);try{new Function('class Test{field=()=>{};test({prop=[]}={}){return prop?(prop?.property??[...prop]):import("");}}'),window.rudderAnalyticsBuildType="modern"}catch{}s=document.head||document.getElementsByTagName("head")[0],r=document.body||document.getElementsByTagName("body")[0],window.rudderAnalyticsAddScript=function(e,t,n){var i=document.createElement("script");i.src=e,i.setAttribute("data-loader","RS_JS_SDK"),t&&n&&i.setAttribute(t,n),o==="async"?i.async=!0:o==="defer"&&(i.defer=!0),s?s.insertBefore(i,s.firstChild):r.insertBefore(i,r.firstChild)},window.rudderAnalyticsMount=function(){(function(){if(typeof globalThis=="undefined"){var t=function(){return typeof self!="undefined"?self:typeof window!="undefined"?window:null},e=t();e&&Object.defineProperty(e,"globalThis",{value:e,configurable:!0})}})(),window.rudderAnalyticsAddScript("".concat(c,"/").concat(window.rudderAnalyticsBuildType,"/").concat(l),"data-rsa-write-key","39TmeE092eVg88WzLm5cJrYPgDT")},typeof Promise=="undefined"||typeof globalThis=="undefined"?window.rudderAnalyticsAddScript("https://polyfill-fastly.io/v3/polyfill.min.js?version=3.111.0&features=Symbol%2CPromise&callback=rudderAnalyticsMount"):window.rudderAnalyticsMount(),d={useBeacon:!0,beaconQueueOptions:{maxItems:1},autoTrack:{pageLifecycle:{enabled:!0}},plugins:["DeviceModeDestinations","ErrorReporting","NativeDestinationQueue","StorageEncryption","StorageMigrator","BeaconQueue"]},e.load("39TmeE092eVg88WzLm5cJrYPgDT","https://umdadwaitjfngv.dataplane.rudderstack.com",d)}}();
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; background: #f5f5f5; padding: 2rem; }
+        h1 { margin-bottom: 1rem; }
+        .buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #fff;
+            transition: transform 0.15s;
+        }
+        button:hover { transform: translateY(-2px); }
+        .btn-page { background: #5046e5; }
+        .btn-track { background: #059669; }
+        .btn-identify { background: #e11d6d; }
+        .btn-group { background: #d97706; }
+        #log {
+            background: #1a1a2e;
+            color: #a0ffa0;
+            padding: 1.5rem;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            line-height: 1.8;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>RudderStack Test Console</h1>
+    <div class="buttons">
+        <button class="btn-page" onclick="testPage()">Send Page</button>
+        <button class="btn-track" onclick="testTrack()">Send Track</button>
+        <button class="btn-identify" onclick="testIdentify()">Send Identify</button>
+        <button class="btn-group" onclick="testGroup()">Send Group</button>
+    </div>
+    <div id="log">Waiting for events...\n</div>
+
+    <script>
+    var logEl = document.getElementById('log');
+    function log(type, msg) {
+        var ts = new Date().toLocaleTimeString();
+        logEl.textContent += '[' + ts + '] ' + type + ' → ' + msg + '\n';
+        logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    rudderanalytics.ready(function() {
+        log('READY', 'RudderStack SDK loaded successfully! Anonymous ID: ' + rudderanalytics.getAnonymousId());
+    });
+
+    function testPage() {
+        rudderanalytics.page('Test', 'RudderStack Test Page', {
+            url: window.location.href,
+            test: true
+        }, function() {
+            log('PAGE', 'Page call sent — name: "RudderStack Test Page"');
+        });
+    }
+
+    function testTrack() {
+        rudderanalytics.track('Test Button Clicked', {
+            label: 'test_track',
+            timestamp: new Date().toISOString(),
+            test: true
+        }, function() {
+            log('TRACK', 'Track call sent — event: "Test Button Clicked"');
+        });
+    }
+
+    function testIdentify() {
+        rudderanalytics.identify('test-user-123', {
+            name: 'Test User',
+            email: 'test@example.com',
+            plan: 'free',
+            test: true
+        }, function() {
+            log('IDENTIFY', 'Identify call sent — userId: "test-user-123"');
+        });
+    }
+
+    function testGroup() {
+        rudderanalytics.group('test-group-456', {
+            name: 'Test Organization',
+            industry: 'Technology',
+            test: true
+        }, function() {
+            log('GROUP', 'Group call sent — groupId: "test-group-456"');
+        });
+    }
+    </script>
+</body>
+</html>

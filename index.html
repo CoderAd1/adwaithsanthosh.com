@@ -8,31 +8,123 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- RudderStack JavaScript SDK v3.2.0 -->
+    <script type="text/javascript">
+    (function() {
+      "use strict";
+      window.RudderSnippetVersion = "3.2.0";
+      var identifier = "rudderanalytics";
+      if (!window[identifier]) {
+        window[identifier] = [];
+      }
+      var rudderanalytics = window[identifier];
+      if (Array.isArray(rudderanalytics)) {
+        if (rudderanalytics.snippetExecuted === true && window.console && console.error) {
+          console.error("RudderStack JavaScript SDK snippet included more than once.");
+        } else {
+          rudderanalytics.snippetExecuted = true;
+          window.rudderAnalyticsBuildType = "legacy";
+          var sdkBaseUrl = "https://cdn.rudderlabs.com";
+          var sdkVersion = "v3";
+          var sdkFileName = "rsa.min.js";
+          var scriptLoadingMode = "async";
+          var methods = [ "setDefaultInstanceKey", "load", "ready", "page", "track", "identify", "alias", "group", "reset", "setAnonymousId", "startSession", "endSession", "consent", "addCustomIntegration" ];
+          for (var i = 0; i < methods.length; i++) {
+            var method = methods[i];
+            rudderanalytics[method] = function(methodName) {
+              return function() {
+                if (Array.isArray(window[identifier])) {
+                  rudderanalytics.push([ methodName ].concat(Array.prototype.slice.call(arguments)));
+                } else {
+                  var _methodName;
+                  (_methodName = window[identifier][methodName]) === null || _methodName === undefined || _methodName.apply(window[identifier], arguments);
+                }
+              };
+            }(method);
+          }
+          try {
+            new Function('class Test{field=()=>{};test({prop=[]}={}){return prop?(prop?.property??[...prop]):import("");}}');
+            window.rudderAnalyticsBuildType = "modern";
+          } catch (e) {}
+          var head = document.head || document.getElementsByTagName("head")[0];
+          var body = document.body || document.getElementsByTagName("body")[0];
+          window.rudderAnalyticsAddScript = function(url, extraAttributeKey, extraAttributeVal) {
+            var scriptTag = document.createElement("script");
+            scriptTag.src = url;
+            scriptTag.setAttribute("data-loader", "RS_JS_SDK");
+            if (extraAttributeKey && extraAttributeVal) {
+              scriptTag.setAttribute(extraAttributeKey, extraAttributeVal);
+            }
+            if (scriptLoadingMode === "async") {
+              scriptTag.async = true;
+            } else if (scriptLoadingMode === "defer") {
+              scriptTag.defer = true;
+            }
+            if (head) {
+              head.insertBefore(scriptTag, head.firstChild);
+            } else {
+              body.insertBefore(scriptTag, body.firstChild);
+            }
+          };
+          window.rudderAnalyticsMount = function() {
+            (function() {
+              if (typeof globalThis === "undefined") {
+                var getGlobal = function getGlobal() {
+                  if (typeof self !== "undefined") {
+                    return self;
+                  }
+                  if (typeof window !== "undefined") {
+                    return window;
+                  }
+                  return null;
+                };
+                var global = getGlobal();
+                if (global) {
+                  Object.defineProperty(global, "globalThis", {
+                    value: global,
+                    configurable: true
+                  });
+                }
+              }
+            })();
+            window.rudderAnalyticsAddScript("".concat(sdkBaseUrl, "/").concat(sdkVersion, "/").concat(window.rudderAnalyticsBuildType, "/").concat(sdkFileName), "data-rsa-write-key", "39TmeE092eVg88WzLm5cJrYPgDT");
+          };
+          if (typeof Promise === "undefined" || typeof globalThis === "undefined") {
+            window.rudderAnalyticsAddScript("https://polyfill-fastly.io/v3/polyfill.min.js?version=3.111.0&features=Symbol%2CPromise&callback=rudderAnalyticsMount");
+          } else {
+            window.rudderAnalyticsMount();
+          }
+          var loadOptions = {};
+          rudderanalytics.load("39TmeE092eVg88WzLm5cJrYPgDT", "https://umdadwaitjfngv.dataplane.rudderstack.com", loadOptions);
+        }
+      }
+    })();
+    </script>
     <style>
         /* ===== CSS RESET & VARIABLES ===== */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-card: #1a1a2e;
-            --bg-card-hover: #22223a;
-            --text-primary: #e8e8f0;
-            --text-secondary: #a0a0b8;
-            --text-muted: #6a6a82;
-            --accent: #6c63ff;
-            --accent-light: #8b83ff;
-            --accent-glow: rgba(108, 99, 255, 0.3);
-            --accent2: #00d4aa;
-            --accent2-glow: rgba(0, 212, 170, 0.3);
-            --accent3: #ff6b9d;
-            --border: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(255, 255, 255, 0.12);
-            --gradient-1: linear-gradient(135deg, #6c63ff, #00d4aa);
-            --gradient-2: linear-gradient(135deg, #ff6b9d, #6c63ff);
-            --gradient-3: linear-gradient(135deg, #00d4aa, #6c63ff, #ff6b9d);
-            --shadow-lg: 0 25px 50px rgba(0,0,0,0.4);
-            --shadow-glow: 0 0 40px var(--accent-glow);
+            --bg-primary: #f8f9fc;
+            --bg-secondary: #eef0f6;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f3f4f8;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a68;
+            --text-muted: #7a7a96;
+            --accent: #5046e5;
+            --accent-light: #6c63ff;
+            --accent-glow: rgba(80, 70, 229, 0.2);
+            --accent2: #059669;
+            --accent2-glow: rgba(5, 150, 105, 0.2);
+            --accent3: #e11d6d;
+            --border: rgba(0, 0, 0, 0.07);
+            --border-hover: rgba(0, 0, 0, 0.14);
+            --gradient-1: linear-gradient(135deg, #5046e5, #059669);
+            --gradient-2: linear-gradient(135deg, #e11d6d, #5046e5);
+            --gradient-3: linear-gradient(135deg, #059669, #5046e5, #e11d6d);
+            --shadow-lg: 0 25px 50px rgba(0,0,0,0.08);
+            --shadow-glow: 0 4px 24px var(--accent-glow);
             --radius: 16px;
             --radius-sm: 8px;
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -78,7 +170,7 @@
         }
 
         .nav.scrolled {
-            background: rgba(10, 10, 15, 0.85);
+            background: rgba(248, 249, 252, 0.85);
             backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid var(--border);
             padding: 0.7rem 2rem;
@@ -167,12 +259,12 @@
             align-items: center;
             gap: 8px;
             padding: 8px 20px;
-            background: rgba(108, 99, 255, 0.1);
-            border: 1px solid rgba(108, 99, 255, 0.2);
+            background: rgba(80, 70, 229, 0.08);
+            border: 1px solid rgba(80, 70, 229, 0.18);
             border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 500;
-            color: var(--accent-light);
+            color: var(--accent);
             margin-bottom: 2rem;
             animation: fadeInUp 0.8s ease both;
         }
@@ -195,12 +287,40 @@
         }
 
         .hero h1 .gradient-text {
-            background: var(--gradient-3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 200% auto;
-            animation: shimmer 4s ease-in-out infinite;
+            color: #0a0a0f;
+            -webkit-text-fill-color: #0a0a0f;
+            position: relative;
+            display: inline-block;
+            animation: fadeInUp 0.8s ease 0.1s both;
+            text-shadow: 0 0 80px rgba(80, 70, 229, 0);
+            transition: text-shadow 0.4s ease;
+        }
+
+        .hero h1 .gradient-text:hover {
+            text-shadow: 0 0 40px rgba(80, 70, 229, 0.3), 0 0 80px rgba(5, 150, 105, 0.15);
+        }
+
+        .hero h1 .gradient-text .letter {
+            display: inline-block;
+            animation: letterWave 3s ease-in-out infinite;
+            animation-delay: var(--delay);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .hero h1 .gradient-text .letter:hover {
+            color: var(--accent);
+            -webkit-text-fill-color: var(--accent);
+            transform: translateY(-6px) scale(1.1);
+        }
+
+        .hero h1 .gradient-text .space {
+            display: inline-block;
+            width: 0.3em;
+        }
+
+        @keyframes letterWave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
         }
 
         .hero-subtitle {
@@ -254,7 +374,7 @@
         }
 
         .btn-secondary:hover {
-            background: rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.04);
             border-color: var(--accent);
             transform: translateY(-2px);
         }
@@ -312,7 +432,7 @@
         .scroll-mouse {
             width: 24px;
             height: 38px;
-            border: 2px solid var(--text-muted);
+            border: 2px solid var(--border-hover);
             border-radius: 12px;
             position: relative;
         }
@@ -398,6 +518,7 @@
             border: 1px solid var(--border);
             border-radius: var(--radius);
             transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .highlight-card:hover {
@@ -448,6 +569,7 @@
             border: 1px solid var(--border);
             border-radius: var(--radius);
             transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .timeline-item:hover {
@@ -467,7 +589,7 @@
             border-radius: 50%;
             border: 3px solid var(--bg-primary);
             transform: translateX(-6px);
-            box-shadow: 0 0 12px var(--accent-glow);
+            box-shadow: 0 0 8px var(--accent-glow);
         }
 
         .timeline-item::after {
@@ -555,6 +677,7 @@
             border-radius: var(--radius);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .education-card::before {
@@ -591,8 +714,8 @@
             align-items: center;
             gap: 6px;
             padding: 6px 14px;
-            background: rgba(0, 212, 170, 0.1);
-            border: 1px solid rgba(0, 212, 170, 0.2);
+            background: rgba(5, 150, 105, 0.08);
+            border: 1px solid rgba(5, 150, 105, 0.18);
             border-radius: 50px;
             font-size: 0.82rem;
             font-weight: 600;
@@ -621,8 +744,8 @@
 
         .coursework-tags span {
             padding: 6px 14px;
-            background: rgba(108, 99, 255, 0.08);
-            border: 1px solid rgba(108, 99, 255, 0.15);
+            background: rgba(80, 70, 229, 0.06);
+            border: 1px solid rgba(80, 70, 229, 0.12);
             border-radius: 50px;
             font-size: 0.78rem;
             color: var(--text-secondary);
@@ -641,6 +764,7 @@
             border: 1px solid var(--border);
             border-radius: var(--radius);
             transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .skill-category:hover {
@@ -678,7 +802,7 @@
 
         .skill-tag {
             padding: 5px 12px;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(0, 0, 0, 0.03);
             border: 1px solid var(--border);
             border-radius: 6px;
             font-size: 0.78rem;
@@ -688,8 +812,8 @@
         }
 
         .skill-tag:hover {
-            background: rgba(108, 99, 255, 0.1);
-            border-color: rgba(108, 99, 255, 0.3);
+            background: rgba(80, 70, 229, 0.08);
+            border-color: rgba(80, 70, 229, 0.25);
             color: var(--text-primary);
         }
 
@@ -719,7 +843,7 @@
             flex-shrink: 0;
             width: 48px;
             height: 48px;
-            background: rgba(108, 99, 255, 0.1);
+            background: rgba(80, 70, 229, 0.08);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -932,7 +1056,7 @@
                 left: 0;
                 width: 100%;
                 height: 100vh;
-                background: rgba(10, 10, 15, 0.98);
+                background: rgba(248, 249, 252, 0.98);
                 backdrop-filter: blur(20px);
                 flex-direction: column;
                 justify-content: center;
@@ -979,8 +1103,8 @@
         .glow-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.12;
+            filter: blur(100px);
+            opacity: 0.08;
             pointer-events: none;
             z-index: 0;
         }
@@ -1045,7 +1169,7 @@
                 Open to Opportunities &middot; F-1 OPT / STEM Eligible
             </div>
             <h1>
-                <span class="gradient-text">Adwaith Santhosh</span>
+                <span class="gradient-text" id="heroName">Adwaith Santhosh</span>
             </h1>
             <p class="hero-subtitle">
                 Machine Learning Engineer crafting intelligent systems with Deep Learning, NLP, and Generative AI &mdash; from research to production at scale.
@@ -1283,7 +1407,7 @@
             <div class="skills-grid">
                 <div class="skill-category reveal">
                     <div class="skill-category-header">
-                        <div class="skill-category-icon" style="background:rgba(108,99,255,0.15);">&#x1F4BB;</div>
+                        <div class="skill-category-icon" style="background:rgba(80,70,229,0.1);">&#x1F4BB;</div>
                         <h3>Languages &amp; Frameworks</h3>
                     </div>
                     <div class="skill-tags">
@@ -1298,7 +1422,7 @@
                 </div>
                 <div class="skill-category reveal">
                     <div class="skill-category-header">
-                        <div class="skill-category-icon" style="background:rgba(0,212,170,0.15);">&#x1F916;</div>
+                        <div class="skill-category-icon" style="background:rgba(5,150,105,0.1);">&#x1F916;</div>
                         <h3>ML / AI / GenAI</h3>
                     </div>
                     <div class="skill-tags">
@@ -1318,7 +1442,7 @@
                 </div>
                 <div class="skill-category reveal">
                     <div class="skill-category-header">
-                        <div class="skill-category-icon" style="background:rgba(255,107,157,0.15);">&#x2601;&#xFE0F;</div>
+                        <div class="skill-category-icon" style="background:rgba(225,29,109,0.08);">&#x2601;&#xFE0F;</div>
                         <h3>Cloud &amp; Infrastructure</h3>
                     </div>
                     <div class="skill-tags">
@@ -1332,7 +1456,7 @@
                 </div>
                 <div class="skill-category reveal">
                     <div class="skill-category-header">
-                        <div class="skill-category-icon" style="background:rgba(108,99,255,0.15);">&#x1F5C4;&#xFE0F;</div>
+                        <div class="skill-category-icon" style="background:rgba(80,70,229,0.1);">&#x1F5C4;&#xFE0F;</div>
                         <h3>Databases &amp; Data</h3>
                     </div>
                     <div class="skill-tags">
@@ -1350,7 +1474,7 @@
                 </div>
                 <div class="skill-category reveal">
                     <div class="skill-category-header">
-                        <div class="skill-category-icon" style="background:rgba(0,212,170,0.15);">&#x2699;&#xFE0F;</div>
+                        <div class="skill-category-icon" style="background:rgba(5,150,105,0.1);">&#x2699;&#xFE0F;</div>
                         <h3>MLOps &amp; Tools</h3>
                     </div>
                     <div class="skill-tags">
@@ -1368,7 +1492,7 @@
                 </div>
                 <div class="skill-category reveal">
                     <div class="skill-category-header">
-                        <div class="skill-category-icon" style="background:rgba(255,107,157,0.15);">&#x1F4D0;</div>
+                        <div class="skill-category-icon" style="background:rgba(225,29,109,0.08);">&#x1F4D0;</div>
                         <h3>Fundamentals</h3>
                     </div>
                     <div class="skill-tags">
@@ -1395,20 +1519,20 @@
                 <div class="section-divider"></div>
             </div>
             <div class="research-list">
-                <div class="research-card reveal">
+                <a href="https://www.sciencedirect.com/science/article/pii/S0277953625010469" target="_blank" rel="noopener" class="research-card reveal" style="text-decoration:none;color:inherit;">
                     <div class="research-icon">&#x1F4D1;</div>
                     <div>
                         <h3>A Decade of Discourse: Exploring Sentiments and Trends around Immigration on Social Media (2014&ndash;2024)</h3>
-                        <div class="journal">Big Data &amp; Society</div>
+                        <div class="journal">Social Science &amp; Medicine</div>
                     </div>
-                </div>
-                <div class="research-card reveal">
+                </a>
+                <a href="https://academic.oup.com/jamiaopen/article/9/1/ooaf169/8415659" target="_blank" rel="noopener" class="research-card reveal" style="text-decoration:none;color:inherit;">
                     <div class="research-icon">&#x1F4D1;</div>
                     <div>
                         <h3>Developing an AI-powered Question-and-Answer Chatbot with English&ndash;Spanish Capabilities for New Mothers</h3>
-                        <div class="journal">Big Data &amp; Society</div>
+                        <div class="journal">JAMIA Open</div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- Achievements -->
@@ -1445,7 +1569,7 @@
             </p>
             <div class="contact-links reveal">
                 <a href="mailto:adwaithsanthosh1@gmail.com" class="contact-card">
-                    <div class="contact-card-icon" style="background:rgba(108,99,255,0.15);">
+                    <div class="contact-card-icon" style="background:rgba(80,70,229,0.1);">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     </div>
                     <div class="contact-card-info">
@@ -1454,7 +1578,7 @@
                     </div>
                 </a>
                 <a href="tel:+12404764046" class="contact-card">
-                    <div class="contact-card-icon" style="background:rgba(0,212,170,0.15);">
+                    <div class="contact-card-icon" style="background:rgba(5,150,105,0.1);">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
                     </div>
                     <div class="contact-card-info">
@@ -1463,7 +1587,7 @@
                     </div>
                 </a>
                 <a href="https://www.linkedin.com/in/adwaith-s-928a241a2/" target="_blank" rel="noopener" class="contact-card">
-                    <div class="contact-card-icon" style="background:rgba(255,107,157,0.15);">
+                    <div class="contact-card-icon" style="background:rgba(225,29,109,0.08);">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                     </div>
                     <div class="contact-card-info">
@@ -1472,7 +1596,7 @@
                     </div>
                 </a>
                 <a href="https://github.com/CoderAd1" target="_blank" rel="noopener" class="contact-card">
-                    <div class="contact-card-icon" style="background:rgba(255,255,255,0.08);">
+                    <div class="contact-card-icon" style="background:rgba(0,0,0,0.05);">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
                     </div>
                     <div class="contact-card-info">
@@ -1543,7 +1667,7 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(108, 99, 255, ${this.opacity})`;
+                ctx.fillStyle = `rgba(80, 70, 229, ${this.opacity * 0.7})`;
                 ctx.fill();
             }
         }
@@ -1564,7 +1688,7 @@
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(108, 99, 255, ${opacity})`;
+                        ctx.strokeStyle = `rgba(80, 70, 229, ${opacity * 0.6})`;
                         ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }
@@ -1659,6 +1783,179 @@
             }
         });
     });
+
+    // ===== HERO NAME LETTER ANIMATION =====
+    (function() {
+        const el = document.getElementById('heroName');
+        const text = el.textContent;
+        el.innerHTML = '';
+        let i = 0;
+        for (const char of text) {
+            if (char === ' ') {
+                el.insertAdjacentHTML('beforeend', '<span class="space"></span>');
+            } else {
+                const span = document.createElement('span');
+                span.className = 'letter';
+                span.textContent = char;
+                span.style.setProperty('--delay', (i * 0.12) + 's');
+                el.appendChild(span);
+                i++;
+            }
+        }
+    })();
+    </script>
+
+    <!-- RudderStack Analytics Tracking -->
+    <script>
+    (function() {
+        var ra = window.rudderanalytics;
+
+        // ===== PAGE VIEW =====
+        ra.page('Portfolio', 'Home', {
+            title: document.title,
+            url: window.location.href,
+            referrer: document.referrer,
+            screen_width: window.innerWidth,
+            screen_height: window.innerHeight
+        });
+
+        // ===== NAVIGATION CLICKS =====
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                ra.track('Navigation Clicked', {
+                    section: this.getAttribute('href').replace('#', ''),
+                    label: this.textContent.trim()
+                });
+            });
+        });
+
+        // ===== HERO CTA BUTTONS =====
+        document.querySelectorAll('.hero-cta .btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var label = this.textContent.trim();
+                var href = this.getAttribute('href');
+                var isResume = href && href.indexOf('.pdf') !== -1;
+                ra.track(isResume ? 'Resume Downloaded' : 'CTA Clicked', {
+                    label: label,
+                    url: href,
+                    location: 'hero'
+                });
+            });
+        });
+
+        // ===== CONTACT CARD CLICKS =====
+        document.querySelectorAll('.contact-card').forEach(function(card) {
+            card.addEventListener('click', function() {
+                var label = card.querySelector('.label');
+                var value = card.querySelector('.value');
+                ra.track('Contact Clicked', {
+                    type: label ? label.textContent.trim() : '',
+                    value: value ? value.textContent.trim() : '',
+                    url: this.getAttribute('href')
+                });
+            });
+        });
+
+        // ===== RESEARCH PAPER CLICKS =====
+        document.querySelectorAll('.research-card').forEach(function(card) {
+            card.addEventListener('click', function() {
+                var title = card.querySelector('h3');
+                var journal = card.querySelector('.journal');
+                ra.track('Research Paper Clicked', {
+                    title: title ? title.textContent.trim() : '',
+                    journal: journal ? journal.textContent.trim() : '',
+                    url: this.getAttribute('href')
+                });
+            });
+        });
+
+        // ===== SECTION VISIBILITY TRACKING =====
+        var sectionStartTimes = {};
+        var sectionObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                var id = entry.target.id;
+                if (!id) return;
+                if (entry.isIntersecting) {
+                    sectionStartTimes[id] = Date.now();
+                    ra.track('Section Viewed', { section: id });
+                } else if (sectionStartTimes[id]) {
+                    var duration = Math.round((Date.now() - sectionStartTimes[id]) / 1000);
+                    ra.track('Section Exited', { section: id, time_spent_seconds: duration });
+                    delete sectionStartTimes[id];
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('section[id]').forEach(function(sec) {
+            sectionObserver.observe(sec);
+        });
+
+        // ===== SKILL TAG HOVER TRACKING =====
+        var skillHoverTimeout;
+        document.querySelectorAll('.skill-tag').forEach(function(tag) {
+            tag.addEventListener('mouseenter', function() {
+                var self = this;
+                skillHoverTimeout = setTimeout(function() {
+                    ra.track('Skill Hovered', { skill: self.textContent.trim() });
+                }, 500);
+            });
+            tag.addEventListener('mouseleave', function() {
+                clearTimeout(skillHoverTimeout);
+            });
+        });
+
+        // ===== TIMELINE ITEM INTERACTIONS =====
+        document.querySelectorAll('.timeline-item').forEach(function(item) {
+            item.addEventListener('click', function() {
+                var company = item.querySelector('.timeline-company');
+                var role = item.querySelector('.timeline-role');
+                ra.track('Experience Clicked', {
+                    company: company ? company.textContent.trim() : '',
+                    role: role ? role.textContent.trim() : ''
+                });
+            });
+        });
+
+        // ===== SCROLL DEPTH TRACKING =====
+        var scrollMilestones = { 25: false, 50: false, 75: false, 100: false };
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight <= 0) return;
+            var scrollPercent = Math.round((scrollTop / docHeight) * 100);
+            [25, 50, 75, 100].forEach(function(milestone) {
+                if (scrollPercent >= milestone && !scrollMilestones[milestone]) {
+                    scrollMilestones[milestone] = true;
+                    ra.track('Scroll Depth', { depth_percent: milestone });
+                }
+            });
+        });
+
+        // ===== TIME ON PAGE =====
+        var pageLoadTime = Date.now();
+        window.addEventListener('beforeunload', function() {
+            var totalTime = Math.round((Date.now() - pageLoadTime) / 1000);
+            ra.track('Page Exit', {
+                time_on_page_seconds: totalTime,
+                scroll_depth_reached: Object.keys(scrollMilestones).filter(function(k) {
+                    return scrollMilestones[k];
+                }).map(Number).sort(function(a, b) { return b - a; })[0] || 0
+            });
+        });
+
+        // ===== EXTERNAL LINK CLICKS =====
+        document.addEventListener('click', function(e) {
+            var link = e.target.closest('a[href]');
+            if (!link) return;
+            var href = link.getAttribute('href');
+            if (href && href.indexOf('http') === 0 && href.indexOf(window.location.hostname) === -1) {
+                ra.track('External Link Clicked', {
+                    url: href,
+                    text: link.textContent.trim().substring(0, 100)
+                });
+            }
+        });
+    })();
     </script>
 </body>
 </html>
