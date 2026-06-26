@@ -117,6 +117,11 @@
             --accent-glow: rgba(80, 70, 229, 0.2);
             --accent2: #059669;
             --accent2-glow: rgba(5, 150, 105, 0.2);
+            --ga-l0: #ebedf0;
+            --ga-l1: #9be9a8;
+            --ga-l2: #40c463;
+            --ga-l3: #30a14e;
+            --ga-l4: #216e39;
             --accent3: #e11d6d;
             --border: rgba(0, 0, 0, 0.07);
             --border-hover: rgba(0, 0, 0, 0.14);
@@ -920,6 +925,378 @@
             line-height: 1.6;
         }
 
+        /* ===== PROJECTS ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-1);
+        }
+
+        .project-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .project-card-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .project-card .project-link-icon {
+            flex-shrink: 0;
+            color: var(--accent2);
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-link-icon {
+            transform: translate(2px, -2px);
+        }
+
+        .project-card .project-subtitle {
+            font-size: 0.85rem;
+            color: var(--accent2);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .project-card ul {
+            list-style: none;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-card ul li {
+            position: relative;
+            padding-left: 1.1rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0.6rem;
+        }
+
+        .project-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .project-tags span {
+            padding: 5px 12px;
+            background: rgba(80, 70, 229, 0.06);
+            border: 1px solid rgba(80, 70, 229, 0.12);
+            border-radius: 50px;
+            font-size: 0.74rem;
+            color: var(--text-secondary);
+        }
+
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .project-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .project-links a:hover {
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .project-links a svg {
+            color: var(--accent2);
+        }
+
+        /* ===== GITHUB ACTIVITY ===== */
+        .github-activity {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .github-activity-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .github-activity-head .ga-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .github-activity-head .ga-title svg {
+            color: var(--accent2);
+        }
+
+        .github-activity-head a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent2);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .github-activity-head a:hover {
+            opacity: 0.75;
+        }
+
+        .ga-year {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--accent2);
+            padding: 2px 9px;
+            border-radius: 50px;
+            background: var(--accent2-glow);
+        }
+
+        .github-chart {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .ga-loading {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            padding: 1rem 0;
+        }
+
+        .ga-graph {
+            --ga-cell: 13px;
+            --ga-gap: 3px;
+            display: inline-flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: max-content;
+        }
+
+        .ga-months {
+            display: flex;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            height: 14px;
+        }
+
+        .ga-month {
+            flex-shrink: 0;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .ga-weeks {
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-rows: repeat(7, var(--ga-cell));
+            gap: var(--ga-gap);
+        }
+
+        .ga-day {
+            width: var(--ga-cell);
+            height: var(--ga-cell);
+            border-radius: 3px;
+            background: var(--ga-l0);
+        }
+
+        .ga-day[data-level="1"] { background: var(--ga-l1); }
+        .ga-day[data-level="2"] { background: var(--ga-l2); }
+        .ga-day[data-level="3"] { background: var(--ga-l3); }
+        .ga-day[data-level="4"] { background: var(--ga-l4); }
+        .ga-day[data-empty] { background: transparent; }
+
+        .ga-legend {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 0.5rem;
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+        }
+
+        .ga-legend .ga-day { cursor: default; }
+
+        .ga-tooltip {
+            position: fixed;
+            z-index: 1000;
+            pointer-events: none;
+            padding: 6px 10px;
+            background: var(--text-primary);
+            color: var(--bg-card);
+            font-size: 0.74rem;
+            font-weight: 500;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translate(-50%, -100%) translateY(-8px);
+            transition: opacity 0.12s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .ga-tooltip.show { opacity: 1; }
+
+        /* ===== ACTIVITY ROW (github graph + live apps) ===== */
+        .activity-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            align-items: stretch;
+        }
+
+        .activity-row .github-activity {
+            margin-top: 0;
+        }
+
+        .live-apps {
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .live-apps-head {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+
+        .live-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--accent2);
+            box-shadow: 0 0 0 0 var(--accent2-glow);
+            animation: livePulse 2s infinite;
+        }
+
+        @keyframes livePulse {
+            0% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.5); }
+            70% { box-shadow: 0 0 0 8px rgba(5, 150, 105, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
+        }
+
+        .app-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .app-link + .app-link { margin-top: 1rem; }
+
+        .app-link:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateX(4px);
+        }
+
+        .app-icon {
+            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: rgba(80, 70, 229, 0.08);
+        }
+
+        .app-info { flex: 1; min-width: 0; }
+
+        .app-info h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+        }
+
+        .app-info span {
+            font-size: 0.76rem;
+            color: var(--text-secondary);
+        }
+
+        .app-arrow {
+            flex-shrink: 0;
+            color: var(--accent2);
+            transition: var(--transition);
+        }
+
+        .app-link:hover .app-arrow { transform: translate(2px, -2px); }
+
         /* ===== CONTACT ===== */
         .contact-section {
             text-align: center;
@@ -1084,6 +1461,10 @@
 
             .achievements-grid { grid-template-columns: 1fr; }
 
+            .projects-grid { grid-template-columns: 1fr; }
+
+            .activity-row { grid-template-columns: 1fr; }
+
             .skills-grid { grid-template-columns: 1fr; }
 
             .contact-links { flex-direction: column; align-items: center; }
@@ -1150,6 +1531,7 @@
                 <li><a href="#experience" onclick="closeNav()">Experience</a></li>
                 <li><a href="#education" onclick="closeNav()">Education</a></li>
                 <li><a href="#skills" onclick="closeNav()">Skills</a></li>
+                <li><a href="#projects" onclick="closeNav()">Projects</a></li>
                 <li><a href="#research" onclick="closeNav()">Research</a></li>
                 <li><a href="#contact" onclick="closeNav()">Contact</a></li>
             </ul>
@@ -1179,7 +1561,7 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     Get In Touch
                 </a>
-                <a href="resume_latest.pdf" class="btn btn-secondary" target="_blank">
+                <a href="Adwaith_Santhosh_Resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener" download="Adwaith_Santhosh_Resume.pdf">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     Download Resume
                 </a>
@@ -1198,7 +1580,7 @@
                     <div class="stat-label">Publications</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number gpa-stat" data-target="4.0">0</div>
+                    <div class="stat-number gpa-stat" data-target="3.95">0</div>
                     <div class="stat-label">GPA (Top 5%)</div>
                 </div>
             </div>
@@ -1381,7 +1763,7 @@
                 <div class="timeline-meta" style="margin-bottom:0.5rem;">
                     <span style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">Aug 2024 &ndash; May 2026 &middot; College Park, MD</span>
                 </div>
-                <div class="gpa">&#x2B50; GPA: 4.0 &mdash; Top 5th Percentile</div>
+                <div class="gpa">&#x2B50; GPA: 3.95 &mdash; Top 5th Percentile</div>
                 <div class="coursework">
                     <h4>Relevant Coursework</h4>
                     <div class="coursework-tags">
@@ -1505,6 +1887,108 @@
                         <span class="skill-tag">Parallel Computing</span>
                         <span class="skill-tag">Statistics</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <span class="section-label">// Projects</span>
+                <h2 class="section-title">Things I've built</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <div class="project-card-head">
+                        <h3>RAG Pipeline &mdash; Dual-Mode Document Processing System</h3>
+                    </div>
+                    <div class="project-subtitle">Python, FastAPI, QdrantDB, Groq, Llama 3.3 70B, Gemini 2.0 Flash, Supabase, React</div>
+                    <ul>
+                        <li>Built a dual-pipeline RAG system: a basic pipeline (PyMuPDF, fixed-size chunking) and an advanced multimodal pipeline (Docling) for table extraction, image analysis, and semantic chunking.</li>
+                        <li>Implemented hybrid retrieval across dual Qdrant collections with re-ranking and score boosting, evaluated on faithfulness, answer relevancy, Precision@K, MRR, and hit-rate.</li>
+                    </ul>
+                    <div class="project-tags">
+                        <span>Python</span><span>FastAPI</span><span>QdrantDB</span><span>Groq</span><span>Llama 3.3 70B</span><span>Gemini 2.0 Flash</span><span>Supabase</span><span>React</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://rag-pipeline-zeta.vercel.app" target="_blank" rel="noopener">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><polyline points="7 7 17 7 17 17"/></svg>
+                            Live Demo
+                        </a>
+                        <a href="https://github.com/CoderAd1/RAG-Pipeline" target="_blank" rel="noopener">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.776.42-1.305.762-1.605-2.665-.305-5.467-1.335-5.467-5.93 0-1.31.467-2.38 1.236-3.22-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 3.003-.404c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.62-5.48 5.92.43.372.823 1.102.823 2.222 0 1.606-.014 2.9-.014 3.293 0 .32.216.694.825.576C20.565 21.795 24 17.297 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+                <div class="project-card reveal">
+                    <div class="project-card-head">
+                        <h3>RecruitSquad &mdash; Autonomous Multi-Agent Recruiting Platform</h3>
+                    </div>
+                    <div class="project-subtitle">Python, FastAPI, LangGraph, OpenAI, Gemini, Firebase, React, Google Cloud Run</div>
+                    <ul>
+                        <li>Designed a 7-agent LangGraph orchestration system (sourcing, OA generation, behavioral chat, scoring, market analysis, interview coordination, audit) spanning 4 graphs with deterministic pipeline routing.</li>
+                        <li>Built a 100-point composite scoring engine integrating resume&ndash;JD fit, OA, behavioral, and multi-round interview feedback; deployed on Google Cloud Run with Firebase-hosted frontend.</li>
+                    </ul>
+                    <div class="project-tags">
+                        <span>Python</span><span>FastAPI</span><span>LangGraph</span><span>OpenAI</span><span>Gemini</span><span>Firebase</span><span>React</span><span>Google Cloud Run</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://recruit-squad-7d8e1.web.app" target="_blank" rel="noopener">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><polyline points="7 7 17 7 17 17"/></svg>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live GitHub graph + live applications -->
+            <div class="activity-row">
+                <!-- Live GitHub Contribution Graph -->
+                <div class="github-activity reveal">
+                    <div class="github-activity-head">
+                        <span class="ga-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.776.42-1.305.762-1.605-2.665-.305-5.467-1.335-5.467-5.93 0-1.31.467-2.38 1.236-3.22-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 3.003-.404c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.62-5.48 5.92.43.372.823 1.102.823 2.222 0 1.606-.014 2.9-.014 3.293 0 .32.216.694.825.576C20.565 21.795 24 17.297 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            Live GitHub activity
+                            <span class="ga-year" id="gaYear"></span>
+                        </span>
+                        <a href="https://github.com/CoderAd1" target="_blank" rel="noopener">View full profile &rarr;</a>
+                    </div>
+                    <div class="github-chart" id="gaChart">
+                        <div class="ga-loading">Loading contributions&hellip;</div>
+                    </div>
+                </div>
+
+                <!-- Live applications -->
+                <div class="live-apps reveal">
+                    <div class="live-apps-head">
+                        <span class="live-dot"></span>
+                        Live applications
+                    </div>
+                    <a href="https://recruit-squad-7d8e1.web.app" target="_blank" rel="noopener" class="app-link">
+                        <div class="app-icon" style="background:linear-gradient(135deg,#5046e5,#6c63ff);">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <div class="app-info">
+                            <h4>RecruitSquad</h4>
+                            <span>Autonomous multi-agent recruiting platform</span>
+                        </div>
+                        <svg class="app-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </a>
+                    <a href="https://rag-pipeline-zeta.vercel.app" target="_blank" rel="noopener" class="app-link">
+                        <div class="app-icon" style="background:linear-gradient(135deg,#059669,#10b981);">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h7"/><path d="M14 2v6h6"/><circle cx="17" cy="16" r="3"/><path d="m21.5 20.5-2.3-2.3"/></svg>
+                        </div>
+                        <div class="app-info">
+                            <h4>RAG Pipeline</h4>
+                            <span>Dual-mode document processing &amp; retrieval</span>
+                        </div>
+                        <svg class="app-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1708,6 +2192,108 @@
         animate();
     })();
 
+    // ===== LIVE GITHUB CONTRIBUTIONS (last 4 months) =====
+    (function() {
+        var GH_USER = 'CoderAd1';
+        var MONTHS_BACK = 4;
+        var chart = document.getElementById('gaChart');
+        var yearEl = document.getElementById('gaYear');
+        if (!chart) return;
+
+        var monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        var COL = 16; // cell (13) + gap (3), keep in sync with --ga-cell/--ga-gap
+
+        fetch('https://github-contributions-api.jogruber.de/v4/' + GH_USER + '?y=last')
+            .then(function(r) { if (!r.ok) throw new Error('bad response'); return r.json(); })
+            .then(function(data) {
+                var all = (data.contributions || []).slice().sort(function(a, b) {
+                    return a.date < b.date ? -1 : 1;
+                });
+
+                var today = new Date();
+                var cutoff = new Date(today.getFullYear(), today.getMonth() - MONTHS_BACK, today.getDate());
+                var days = all.filter(function(d) { return new Date(d.date) >= cutoff; });
+                if (!days.length) { chart.innerHTML = '<div class="ga-loading">No recent activity.</div>'; return; }
+
+                // Build a flat, column-major cell list: pad the first column so the
+                // first real day lands on its correct weekday row, pad the tail to a
+                // full week. The CSS grid (7 rows, column auto-flow) lays these out.
+                var cells = [];
+                var startPad = new Date(days[0].date).getDay(); // 0=Sun
+                for (var p = 0; p < startPad; p++) cells.push(null);
+                days.forEach(function(d) { cells.push(d); });
+                while (cells.length % 7 !== 0) cells.push(null);
+                var numWeeks = cells.length / 7;
+
+                // Month label spans: one label per contiguous run of weeks in a month.
+                var weekMonth = [];
+                for (var w = 0; w < numWeeks; w++) {
+                    var rep = null;
+                    for (var r = 0; r < 7 && !rep; r++) rep = cells[w * 7 + r];
+                    weekMonth.push(rep ? new Date(rep.date).getMonth() : -1);
+                }
+                var monthsRow = '<div class="ga-months">';
+                var i = 0;
+                while (i < numWeeks) {
+                    var m = weekMonth[i], span = 1;
+                    while (i + span < numWeeks && weekMonth[i + span] === m) span++;
+                    var label = (m >= 0 && span >= 2) ? monthNames[m] : '';
+                    monthsRow += '<div class="ga-month" style="width:' + (span * COL) + 'px">' + label + '</div>';
+                    i += span;
+                }
+                monthsRow += '</div>';
+
+                // Cells in column-major order
+                var weeksHtml = '<div class="ga-weeks">';
+                cells.forEach(function(d) {
+                    if (!d) { weeksHtml += '<div class="ga-day" data-empty></div>'; return; }
+                    var lvl = d.level != null ? d.level : (d.count > 0 ? 1 : 0);
+                    weeksHtml += '<div class="ga-day" data-level="' + lvl
+                        + '" data-count="' + d.count + '" data-date="' + d.date + '"></div>';
+                });
+                weeksHtml += '</div>';
+
+                var total = days.reduce(function(s, d) { return s + (d.count || 0); }, 0);
+                var legend = '<div class="ga-legend"><span>' + total.toLocaleString()
+                    + ' contributions in the last ' + MONTHS_BACK + ' months</span>'
+                    + '<span style="margin-left:auto">Less</span>'
+                    + '<div class="ga-day" data-level="0"></div><div class="ga-day" data-level="1"></div>'
+                    + '<div class="ga-day" data-level="2"></div><div class="ga-day" data-level="3"></div>'
+                    + '<div class="ga-day" data-level="4"></div><span>More</span></div>';
+
+                chart.innerHTML = '<div class="ga-graph">' + monthsRow + weeksHtml + legend + '</div>';
+
+                // Year label (range may span two years)
+                var y1 = new Date(days[0].date).getFullYear();
+                var y2 = new Date(days[days.length - 1].date).getFullYear();
+                if (yearEl) yearEl.textContent = (y1 === y2) ? String(y1) : (y1 + '–' + y2);
+
+                // Custom hover tooltip: "N contributions · Mon, Jun 24, 2026"
+                var tip = document.createElement('div');
+                tip.className = 'ga-tooltip';
+                document.body.appendChild(tip);
+                chart.querySelectorAll('.ga-day[data-date]').forEach(function(cell) {
+                    cell.addEventListener('mouseenter', function() {
+                        var dt = new Date(cell.dataset.date + 'T00:00:00');
+                        var c = parseInt(cell.dataset.count, 10);
+                        var nice = dayNames[dt.getDay()] + ', ' + monthNames[dt.getMonth()] + ' '
+                            + dt.getDate() + ', ' + dt.getFullYear();
+                        tip.textContent = (c === 1 ? '1 contribution' : c + ' contributions') + ' · ' + nice;
+                        var rect = cell.getBoundingClientRect();
+                        tip.style.left = (rect.left + rect.width / 2) + 'px';
+                        tip.style.top = rect.top + 'px';
+                        tip.classList.add('show');
+                    });
+                    cell.addEventListener('mouseleave', function() { tip.classList.remove('show'); });
+                });
+            })
+            .catch(function() {
+                chart.innerHTML = '<div class="ga-loading">Couldn\'t load live activity. '
+                    + '<a href="https://github.com/' + GH_USER + '" target="_blank" rel="noopener" style="color:var(--accent2)">View on GitHub &rarr;</a></div>';
+            });
+    })();
+
     // ===== NAVBAR SCROLL =====
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', function() {
@@ -1754,7 +2340,7 @@
                     const current = target * ease;
 
                     if (isDecimal) {
-                        el.textContent = current.toFixed(1);
+                        el.textContent = current.toFixed(2);
                     } else {
                         el.textContent = Math.round(current) + '+';
                     }
